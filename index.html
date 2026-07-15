@@ -13,24 +13,34 @@
 <!-- Dynamický kontajner pre 50+ bublín -->
 <div id="bubble-container"></div>
 
-<!-- PAGE 1: Welcome Menu -->
+<!-- PAGE 1: Login Menu -->
 <div id="welcome-screen" class="page active">
-  <div class="menu">
-    <div class="title">EVENTY</div>
-    <button data-page="events-screen">Pokračovať</button>
+  <div class="menu auth-menu">
+    <div class="title" id="auth-title">PRIHLÁSENIE</div>
+    <form id="login-form" class="auth-form">
+      <input id="login-email" type="text" inputmode="email" autocomplete="email" placeholder="Email" required>
+      <input id="login-password" type="password" placeholder="Heslo" required>
+      <input id="auth-name" class="hidden" type="text" placeholder="Meno" required>
+      <button id="auth-submit-btn" type="submit">Prihlásiť sa</button>
+    </form>
+    <div class="auth-links">
+      <button type="button" class="text-link" id="forgot-password-link">Zabudnuté heslo?</button>
+      <button type="button" class="text-link" id="signup-link">Nemáte účet?</button>
+    </div>
+    <p id="auth-message" class="auth-message">Prihláste sa a pokračujte.</p>
   </div>
 </div>
 
 <!-- PAGE 2: Events Screen (Dynamic Calendar) -->
 <div id="events-screen" class="page">
+  <button id="add-event-btn" class="add-event-btn" type="button">+ ADD EVENT</button>
   <div class="menu calendar-menu">
-    
     <!-- Header with Nav Controls and Predictive Badges -->
     <div class="calendar-header">
       
       <!-- Left Controls (Prev) -->
       <div class="nav-control-group">
-        <div id="prev-month-badge" class="event-badge">0</div>
+        <div id="prev-month-badge" class="event-badge hidden">0</div>
         <button id="prev-month-btn" class="nav-arrow">&lt;</button>
       </div>
       
@@ -39,7 +49,7 @@
       
       <!-- Right Controls (Next) -->
       <div class="nav-control-group">
-        <div id="next-month-badge" class="event-badge">0</div>
+        <div id="next-month-badge" class="event-badge hidden">0</div>
         <button id="next-month-btn" class="nav-arrow">&gt;</button>
       </div>
       
@@ -60,6 +70,23 @@
     <div class="title" id="dynamic-title">INFO</div>
     <p id="dynamic-desc" style="color: #fff; text-align: center; margin-bottom: 30px; line-height: 1.5;"></p>
     <button data-page="events-screen">Späť na kalendár</button>
+  </div>
+</div>
+
+<div id="event-modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="title" style="font-size: 24px; margin-bottom: 18px;">PRIDAŤ UDALOSŤ</div>
+    <form id="add-event-form" class="auth-form">
+      <input id="event-date" type="date" required>
+      <input id="event-tag" type="text" placeholder="Tag udalosti" required>
+      <input id="event-title" type="text" placeholder="Názov udalosti" required>
+      <textarea id="event-desc" rows="4" placeholder="Popis udalosti"></textarea>
+      <div class="modal-actions">
+        <button type="submit">Uložiť</button>
+        <button type="button" id="cancel-event-btn" class="secondary-btn">Zrušiť</button>
+      </div>
+      <p id="event-form-message" class="form-message"></p>
+    </form>
   </div>
 </div>
 
