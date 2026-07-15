@@ -1,0 +1,52 @@
+<!-- Dynamický kontajner pre 50+ bublín -->
+<div id="bubble-container"></div>
+
+<!-- PAGE 1: Welcome Menu -->
+<div id="welcome-screen" class="page active">
+  <div class="menu">
+    <div class="title">EVENTY</div>
+    <button data-page="events-screen">Pokračovať</button>
+  </div>
+</div>
+
+<!-- PAGE 2: Events Screen (Dynamic Calendar) -->
+<div id="events-screen" class="page">
+  <div class="menu calendar-menu">
+    
+    <!-- Header with Nav Controls and Predictive Badges -->
+    <div class="calendar-header">
+      
+      <!-- Left Controls (Prev) -->
+      <div class="nav-control-group">
+        <div id="prev-month-badge" class="event-badge">0</div>
+        <button id="prev-month-btn" class="nav-arrow">&lt;</button>
+      </div>
+      
+      <!-- Center Title -->
+      <div class="title" id="calendar-month-title">MESIAC</div>
+      
+      <!-- Right Controls (Next) -->
+      <div class="nav-control-group">
+        <div id="next-month-badge" class="event-badge">0</div>
+        <button id="next-month-btn" class="nav-arrow">&gt;</button>
+      </div>
+      
+    </div>
+    
+    <!-- Calendar Grid Container -->
+    <div class="calendar-grid" id="calendar-grid-target">
+      <!-- Weekday headers and day tiles are automatically injected here by JS -->
+    </div>
+
+    <button data-page="welcome-screen">Späť</button>
+  </div>
+</div>
+
+<!-- PAGE 3: Event Detail Screen -->
+<div id="detail-screen" class="page">
+  <div class="menu">
+    <div class="title" id="dynamic-title">INFO</div>
+    <p id="dynamic-desc" style="color: #fff; text-align: center; margin-bottom: 30px; line-height: 1.5;"></p>
+    <button data-page="events-screen">Späť na kalendár</button>
+  </div>
+</div>
