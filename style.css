@@ -1,0 +1,237 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #210b0d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Multi-page Display & Blur Fade Animation --- */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    opacity: 0;
+    filter: blur(15px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.page.active {
+    opacity: 1;
+    filter: blur(0px);
+    pointer-events: auto;
+}
+
+/* --- JavaScript Controlled Bubbles Background --- */
+#bubble-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -60px;
+    background: rgba(180, 30, 40, 0.12);
+    border-radius: 50%;
+    animation: rise linear infinite;
+    filter: blur(1px);
+}
+
+@keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-125vh) scale(1.5); opacity: 0; }
+}
+
+/* Menu Card Bases */
+.menu {
+    position: relative;
+    width: 420px;
+    padding: 40px;
+    border-radius: 20px;
+    background: #2b1014;
+    border: 3px solid transparent;
+    background-image: linear-gradient(#2b1014, #2b1014), linear-gradient(to top, black, #c0182b);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 40px rgba(150, 0, 20, 0.3);
+}
+
+/* Expanded Grid Card */
+.calendar-menu {
+    width: 650px;
+    padding: 30px;
+}
+
+/* Header Alignment Layout */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* Groups button and badge together */
+.nav-control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Predictive Badges above the arrows */
+.event-badge {
+    background: #ff2038;
+    color: #000;
+    font-weight: bold;
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 32, 56, 0.6);
+    margin-bottom: 5px; /* Pushes it above the button */
+}
+
+/* Title adjustments inside the header box */
+.calendar-header .title {
+    margin-bottom: 0;
+    font-size: 28px;
+    flex-grow: 1;
+}
+
+/* Arrow controls style setup */
+button.nav-arrow {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Title */
+.title {
+    text-align: center;
+    color: #ff2038;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(255, 20, 40, 0.4);
+}
+
+/* --- Dynamic Calendar Grid Layout --- */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 25px;
+}
+
+/* Weekday Label Headers (PO, UT...) */
+.day-header {
+    text-align: center;
+    color: #ff2038;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 8px;
+    opacity: 0.8;
+}
+
+/* Standard Calendar Date box */
+.day-box {
+    background: #1f0b0d;
+    border: 1px solid #4a1217;
+    border-radius: 6px;
+    height: 55px;
+    padding: 4px;
+    color: #a5888a;
+    font-size: 13px;
+    position: relative;
+}
+
+/* Highlight current date */
+.day-box.current-day {
+    border: 1px dashed #ff2038;
+    background: #2b1216;
+}
+
+.day-box.empty {
+    background: transparent;
+    border: none;
+}
+
+/* Active Event Styling */
+.day-box.has-event {
+    border-color: #ff2038;
+    background: #3d1419;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.day-box.has-event:hover {
+    transform: scale(1.05);
+    background: #541920;
+}
+
+/* Micro Badge for event type inside day cell */
+.event-tag {
+    display: block;
+    font-size: 8px;
+    background: #ff2038;
+    color: #000;
+    font-weight: bold;
+    padding: 1px 2px;
+    border-radius: 3px;
+    margin-top: 3px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Buttons */
+button {
+    display: block;
+    margin: auto;
+    width: 180px;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    background: #54151b;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #ff2038;
+    color: #000;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 32, 56, 0.4);
+}
